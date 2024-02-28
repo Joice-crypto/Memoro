@@ -19,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class , 'index']);
 
-Route::get('/profile', [ProfileController::class , 'index']);
+// Route::get('/profile', [ProfileController::class , 'index']);
+Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
