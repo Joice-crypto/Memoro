@@ -1,8 +1,10 @@
+
+
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark ticky-top bg-body-tertiary"
         data-bs-theme="dark">
         <div class="container">
-            <img style="width:50px" class="me-2"
-            src="../assets/memoroFundoPreto.png" alt="Logo Memoro">
+            <a href="/"><img style="width:50px" class=""
+            src="{{ asset('assets/memoroFundoPreto.png') }}" alt="Logo Memoro"></a>
             {{-- <a class="navbar-brand fw-semibold text-warning" href="/">{{ config('app.name')}}</a> --}}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
