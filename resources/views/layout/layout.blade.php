@@ -5,9 +5,9 @@
 
     <title>  {{ config('app.name')}} </title>
 
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="memoro/resources/css/app.css">
+    <link rel="stylesheet" href="./resources/css/app.css">
     </head>
     <body class="bg-dark-subtle ">
         

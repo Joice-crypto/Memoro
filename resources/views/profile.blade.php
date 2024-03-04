@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <div class=" bg-light col">
-            <h3 class="mt-3">Gerenciar Perfil</h3>
+            <h3 class="mt-3 mt-3 text-center">Gerenciar Perfil</h3>
             <form class="pr-3">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Nome</label>
@@ -39,3 +39,16 @@
 
 
 @endsection
+
+{{-- vai renderizar a pagina de novas entradas --}}
+@section('entradas')
+@include('entradas')  
+@endsection
+
+{{-- vai renderizar a pagina de inventario --}}
+@section('inventario')
+@include('inventario')  
+@endsection
+
+
+

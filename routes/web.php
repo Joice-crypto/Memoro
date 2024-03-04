@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NovasEntradasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class , 'index']);
 
 // Route::get('/profile', [ProfileController::class , 'index']);
-Route::get('/profile', [ProfileController::class , 'index'])->name('profile');
+Route::get('/profile', [ProfileController::class , 'index']);
+
+Route::get('/entradas', [NovasEntradasController::class , 'index']);
+
