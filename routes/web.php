@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\NovasEntradasController;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\MemoriaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +22,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class , 'index']);
 
-// Route::get('/profile', [ProfileController::class , 'index']);
+// perfil do usuario
 Route::get('/profile', [ProfileController::class , 'index']);
 
-Route::get('/entradas', [NovasEntradasController::class , 'index']);
+// vizualizar memorias
+Route::get('/entradas', [MemoriaController::class , 'index']);
+
+// criar memorias
+Route::get('/novas_memorias', [MemoriaController::class , 'new_memorias']);
+
+// criar alimento
+Route::post('/alimento', [InventarioController::class , 'store'])->name('alimento.create');
+
+// vizualizar alimentos
+Route::get('/inventario', [InventarioController::class , 'index'])->name('alimento.view');
+
+
+
+
 

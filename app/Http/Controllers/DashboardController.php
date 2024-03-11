@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Memoria;
+use App\Models\Alimento;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index(){
+       
 
-        $users = [
-            [
-                'name' => 'Joice',
-                'age' => 22,
-            ],
-            [
-                'name' => 'Ana',
-                'age' => 20,
-            ]
-            ];
-    
 
-        return view ('dashboard' , [
-            'userList' => $users
-        ]);
+        return view ('dashboard');
+        // return view ('dashboard' , [
+        //     'memorias' => Memoria::all()
+        // ]);
     }
 }
