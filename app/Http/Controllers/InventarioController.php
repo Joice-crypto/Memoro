@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class InventarioController extends Controller
 {
-
+    // aqui eu visualizo meus alimentos
     public function index(){
 
-       // var_dump(Alimento::all());
-        return view ('inventario');
+        //var_dump(Alimento::all());
+        return view ('inventario' , ['alimentos'=>Alimento::all()]);
     }
 
 
@@ -33,6 +33,12 @@ class InventarioController extends Controller
 
         $alimento->save();   
 
+         return redirect()->route('alimento.view');
+
         
+    }
+
+    public function cadastrarAlimentoView(){
+        return view ('entradas');
     }
 }

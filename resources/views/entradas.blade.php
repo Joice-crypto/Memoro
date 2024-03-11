@@ -1,7 +1,7 @@
 @extends('nav2')
 @extends('layout.layout')
-
-<div class="tab-pane fade" id="v-pills-entradas" role="tabpanel" aria-labelledby="v-pills-entradas-tab">
+@extends('layout.nav')
+@section('abas')
     <div class="container">
         <div class="row">
             <div class=" bg-light col">
@@ -13,8 +13,7 @@
                         <input type="text" class="form-control" name="nome" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <select class="form-select form-select-sm mb-3" name="tipo"
-                            aria-label="Large select example">
+                        <select class="form-select form-select-sm mb-3" name="tipo" aria-label="Large select example">
                             <option selected disabled>Tipo de produto</option>
                             <option value="Queijo">Queijo</option>
                             <option value="Vinho">Vinho</option>
@@ -49,4 +48,4 @@
             </div>
         </div>
     </div>
-</div>
+@endsection

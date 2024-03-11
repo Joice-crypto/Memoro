@@ -1,4 +1,8 @@
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-link:hover {
     background-color: #efb60a !important;
     color: black !important;
+}
+
+#v-pills-tab {
+    text-align: center;
 }
