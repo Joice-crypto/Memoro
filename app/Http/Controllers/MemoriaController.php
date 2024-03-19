@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Memoria;
 use App\Models\Alimento;
+use App\Models\Avaliacao;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,13 @@ class MemoriaController extends Controller
 
     public function storeMemoria(Request $request)
     {
-       
+
+        request()->validate([
+            'descricao' => 'required|max:500',
+            'titulo' => 'required'
+
+        ]);
+
 
         $descricao = request()->get('descricao');
         $titulo = request()->get('titulo');
@@ -48,6 +55,35 @@ class MemoriaController extends Controller
 
         $memoria->save();
 
-       redirect()->route('memorias');
+        if ($request->input('fazerAvaliacao') . value('sim')) {
+
+            // Criar avaliação
+            $avaliacaoAparencia = $request->input('avaliacaoAparencia');
+            $avaliacaoSabor = $request->input('avaliacaoSabor');
+            $avaliacaoTextura = $request->input('avaliacaoTextura');
+            $avaliacaoGeral = $request->input('avaliacaoGeral');
+            $observacao = $request->input('observacao');
+
+            $avaliacao = new Avaliacao([
+                'avaliacaoAparencia' => $avaliacaoAparencia,
+                'avaliacaoSabor' => $avaliacaoSabor,
+                'avaliacaoTextura' => $avaliacaoTextura,
+                'avaliacaoGeral' => $avaliacaoGeral,
+                'observacao' => $observacao,
+                'memoria_id' => $memoria->id, // Use o ID da memória recém-criada
+            ]);
+            $avaliacao->save();
+        }
+
+        return redirect()->route('memoria.view')->with('success', 'Memoria criada com sucesso !');
+    }
+
+    public function destroy(Memoria $id)
+    {
+
+        $id->delete();
+
+
+        return redirect()->route('memoria.view')->with('success', 'Memoria apagada com sucesso !');
     }
 }

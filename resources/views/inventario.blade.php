@@ -3,6 +3,7 @@
 @extends('layout.nav')
 @section('abas')
     <div class="container">
+        @include('shared.success-message')
         <div class="row">
             <div class=" bg-light col">
                 <h3 class="mt-3 mt-3 text-center">Inventario</h3>
@@ -21,12 +22,28 @@
                         @foreach ($alimentos as $alimento)
                             <tr>
 
-                                <th>{{ $alimento->tipo }}</th>
-                                <td>{{ $alimento->nome }}</td>
+                                <td>{{ $alimento->tipo }}</td>
+                                <td>
+                                    <a href="{{ route('alimento.view', $alimento->id) }}">
+                                        {{ $alimento->nome }}
+                                    </a>
+                                </td>
                                 <td>{{ $alimento->quantidade }}</td>
-                                <td><i class="fa-solid fa-trash-can" style="color: red;"></i> <i
-                                        class="fa-solid fa-pen-to-square" style="color: #1c71d8;"></i></td>
+                                <td class="d-flex justify-content-center">
+                                    <form action="{{ route('alimento.destroy', $alimento->id) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                            <i class="fa-solid fa-trash-can" style="color: red;"></i>
+                                        </button>
+                                    </form>
 
+                                    <a href="{{ route('alimento.edit', $alimento->id) }}" style="text-decoration: none;">
+                                        <i class="fa-solid fa-pen-to-square" style="color: #1c71d8;"></i>
+                                    </a>
+
+
+                                </td>
 
                             </tr>
                         @endforeach

@@ -30,46 +30,49 @@
                         <label for="nomeProduto" class="form-label">Insira uma imagem</label>
                         <input type="File" name="imagem" aria-describedby="emailHelp">
                     </div>
-                    <div class="mb-3">
-                        <label for="nomeProduto" class="form-label">Observações</label>
-                        <input type="text" class="form-control" aria-describedby="emailHelp">
-                    </div>
+
+                    <h5>Deseja fazer avaliação?</h5>
                     <div class="mb-3">
                         <label>
-                            <input type="radio" name="opcao" value="sim" onclick="mostrarCampos()"> Sim
+                            <input type="radio" name="fazerAvaliacao" value="sim" onclick="mostrarCampos()"> Sim
                         </label>
                     </div>
                     <div class="mb-3">
                         <label>
-                            <input type="radio" name="opcao" value="nao" onclick="ocultarCampos()"> Não
+                            <input type="radio" name="fazerAvaliacao" value="nao" onclick="ocultarCampos()"> Não
                         </label>
                     </div>
 
                     <div id="camposAvaliacao" style="display: none;">
                         <!-- Campos de Avaliação -->
-                        <div class="mb-3">
-                            <label for="nomeProduto" class="form-label">Avaliação geral</label>
-                            <input type="number" id="campo1" class="form-control" aria-describedby="emailHelp">
-                        </div>
-
 
                         <div class="mb-3">
                             <label for="nomeProduto" class="form-label">Avaliação geral</label>
-                            <input type="number" class="form-control" aria-describedby="emailHelp">
+                            <input type="number" name="avaliacaoGeral" class="form-control" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="nomeProduto" class="form-label">Avaliação de Sabor</label>
-                            <input type="number" class="form-control" aria-describedby="emailHelp">
+                            <input type="number" name="avaliacaoSabor" class="form-control" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="nomeProduto" class="form-label">Avaliação de Textura</label>
-                            <input type="number" class="form-control" aria-describedby="emailHelp">
+                            <input type="number" name="avaliacaoTextura" class="form-control" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="nomeProduto" class="form-label">Avaliação de Aparência</label>
-                            <input type="number" class="form-control" aria-describedby="emailHelp">
+                            <input type="number" name="avaliacaoAparencia" class="form-control"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nomeProduto" class="form-label">Observações</label>
+                            <input type="text" name="observacao" class="form-control" aria-describedby="emailHelp">
                         </div>
                     </div>
+                    @foreach (['titulo', 'descricao', 'avaliacaoAparencia', 'avaliacaoSabor', 'avaliacaoTextura', 'avaliacaoGeral', 'observacao'] as $campo)
+                        @error($campo)
+                            <span class="fs-6 text-danger">{{ $message }}</span>
+                        @enderror
+                    @endforeach
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-success ">Cadastrar</button>
                     </div>

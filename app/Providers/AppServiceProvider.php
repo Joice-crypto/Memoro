@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,14 +23,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Validator::extend('imagem', function ($attribute, $value, $parameters, $validator) {
-        // Sua lógica de validação para imagem aqui
-        // Retorna true se a validação for bem-sucedida, false caso contrário
+            // Sua lógica de validação para imagem aqui
+            // Retorna true se a validação for bem-sucedida, false caso contrário
 
-        // Exemplo de lógica: verifica se o arquivo é uma imagem válida
-        $allowedMimes = ['jpeg', 'png', 'jpg', 'gif'];
-        $uploadedMime = $value->getClientOriginalExtension();
+            // Exemplo de lógica: verifica se o arquivo é uma imagem válida
+            $allowedMimes = ['jpeg', 'png', 'jpg', 'gif'];
+            $uploadedMime = $value->getClientOriginalExtension();
 
-        return in_array($uploadedMime, $allowedMimes);
-    });
+            return in_array($uploadedMime, $allowedMimes);
+        });
     }
 }

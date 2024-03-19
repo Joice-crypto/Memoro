@@ -21,7 +21,10 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('memoria_id');
-            $table->foreign('memoria_id')->references('id')->on('memoria');
+            $table->foreign('memoria_id')
+                ->references('id')
+                ->on('memoria')
+                ->onDelete('cascade'); // Adiciona a opção ON DELETE CASCADE
         });
     }
 

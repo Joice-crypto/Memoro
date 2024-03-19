@@ -25,7 +25,7 @@ class AvaliacaoController extends Controller
             'memoria_id' => $memoria_id,
         ]);
 
-        $avaliacao->save();
+      $avaliacao->save();
 
        redirect()->route('memorias');
          

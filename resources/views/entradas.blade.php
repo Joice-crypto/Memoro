@@ -40,6 +40,11 @@
                         <label for="nomeProduto" class="form-label">Observações</label>
                         <input type="text" name="observacoes" class="form-control" aria-describedby="emailHelp">
                     </div>
+                    @foreach (['nome', 'tipo', 'marca', 'origem', 'quantidade', 'observacoes'] as $campo)
+                        @error($campo)
+                            <span class="fs-6 text-danger">{{ $message }}</span>
+                        @enderror
+                    @endforeach
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-success ">Cadastrar</button>
                     </div>

@@ -22,32 +22,44 @@ use Illuminate\Support\Facades\Route;
 
 
 // inicio
-Route::get('/', [DashboardController::class , 'index']);
+Route::get('/', [DashboardController::class, 'index']);
 
 // perfil do usuario
-Route::get('/profile', [ProfileController::class , 'index']);
+Route::get('/profile', [ProfileController::class, 'index']);
 
 
-// criar alimento form
-Route::post('/alimento', [InventarioController::class , 'store'])->name('alimento.create');
+// form de criar alimento
+Route::post('/alimento', [InventarioController::class, 'store'])->name('alimento.create');
 
 // criar alimento view
-Route::get('/entradas', [InventarioController::class , 'cadastrarAlimentoView']);
+Route::get('/entradas', [InventarioController::class, 'cadastrarAlimentoView']);
 
 // vizualizar alimentos
-Route::get('/inventario', [InventarioController::class , 'index'])->name('alimento.view');
+Route::get('/inventario', [InventarioController::class, 'index'])->name('alimentos.view');
 
+// vizualizar um alimento
+Route::get('/alimento/{id}/view', [InventarioController::class, 'AlimentoView'])->name('alimento.view');
 
+// editar alimento
+Route::get('/alimento/{id}/edit', [InventarioController::class, 'edit'])->name('alimento.edit');
+
+// update de alimento
+Route::put('/alimento/{id}', [InventarioController::class, 'update'])->name('alimento.update');
+
+// deletar alimento
+Route::delete('/alimento/{id}', [InventarioController::class, 'destroy'])->name('alimento.destroy');
 
 // criar memorias view
-Route::get('/novas_memorias', [MemoriaController::class , 'new_memorias']);
+Route::get('/novas_memorias', [MemoriaController::class, 'new_memorias']);
 
 // criar memorias form 
-Route::post('/novasmemorias', [MemoriaController::class , 'storeMemoria'])->name('memoria.create');
+Route::post('/novasmemorias', [MemoriaController::class, 'storeMemoria'])->name('memoria.create');
 
 // visualzar memorias 
-Route::get('/memorias', [MemoriaController::class , 'index'])->name('memorias');
+Route::get('/memorias', [MemoriaController::class, 'index'])->name('memoria.view');
 
+// deletar memoria
+Route::delete('/memoria/{id}', [MemoriaController::class, 'destroy'])->name('memoria.destroy');
 
-// criar memorias form 
-Route::post('/avaliacao', [AvaliacaoController::class , 'storeAvaliacao'])->name('avaliacao.create');
+// criar avaliação form 
+Route::post('/avaliacao', [AvaliacaoController::class, 'storeAvaliacao'])->name('avaliacao.create');
