@@ -6,7 +6,7 @@
         @include('shared.success-message')
         <div class="row">
             <div class=" bg-light col">
-                <h3 class="mt-3 mt-3 text-center">Inventario</h3>
+                <h3 class="mt-3 text-center">Inventario</h3>
 
                 <table class="table">
                     <thead>
