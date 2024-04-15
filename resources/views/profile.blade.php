@@ -18,16 +18,15 @@
                             <p> Seguindo: {{ $user->name }}</p>
                         </div>
                         <div class="mb-3">
-                            <p> Email: {{ $user->name }}</p>
-                        </div>
-
-
-
-                        <div class="d-flex justify-content-evenly">
-
-                            <a href="{{ route('profile.edit') }}" class="btn btn-primary">Editar</a>
+                            <p> Email: {{ $user->email }}</p>
                         </div>
                     @endforeach
+
+                    <div class="d-flex justify-content-evenly">
+
+                        <a href="{{ route('profile.edit') }}" class="btn btn-primary">Editar</a>
+                    </div>
+
                 </form>
             </div>
         </div>
