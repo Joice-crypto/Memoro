@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\MemoriaController;
 use App\Http\Controllers\AvaliacaoController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PainelControleController;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/memoria/{id}', [MemoriaController::class, 'destroy'])->name('memoria.destroy');
     // criar avaliação form 
     Route::post('/avaliacao', [AvaliacaoController::class, 'storeAvaliacao'])->name('avaliacao.create');
+
+
+    // criar comentarios
+    Route::post('/memorias/{memoria}/comments', [CommentController::class, 'storeComments'])->name('memorias.comments.store');
 });
 
 require __DIR__ . '/auth.php';

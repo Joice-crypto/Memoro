@@ -12,7 +12,10 @@ class MemoriaController extends Controller
 {
     public function index()
     {
-        return view('memorias', ['memorias' => Memoria::all()]);
+        $memorias = Memoria::with('comments')->get();
+        return view('memorias', ['memorias' => $memorias]);
+
+        //return view('memorias', ['memorias' => Memoria::all()]);
     }
 
     public function new_memorias()

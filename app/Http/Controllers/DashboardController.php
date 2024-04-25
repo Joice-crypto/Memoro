@@ -19,7 +19,6 @@ class DashboardController extends Controller
             $memorias = $memorias->where('descricao', 'like', '%' . request()->get('search', '') . '%');
         }
 
-
         return view('dashboard', ['memorias' => $memorias->paginate(5)]);
         // return view('dashboard', ['memorias' => Memoria::all()]);
     }

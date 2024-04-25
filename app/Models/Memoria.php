@@ -15,7 +15,11 @@ class Memoria extends Model
         'titulo',
         'imagem',
         'alimento_id',
-          
+
     ];
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'memoria_id', 'id');
+    }
 }
