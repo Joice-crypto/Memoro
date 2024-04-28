@@ -22,9 +22,11 @@
                     <tbody class="table-group-divider">
                         @foreach ($memorias as $memoria)
                             <tr>
-                                <th> <img src="{{ asset('storage/app/public/memoria/' . substr($memoria->imagem, 8)) }}"
-                                        alt="{{ $memoria->titulo }}" width="100"></th>
-                                <th>{{ $memoria->titulo }}</th>
+                                <th>
+                                    <img src="{{ asset('storage/' . $memoria->imagem) }}" alt="profile Pic" height="100"
+                                        width="120">
+                                </th>
+                                <th><a href="{{ route('memoria.show', $memoria->id) }}">{{ $memoria->titulo }}</a></th>
                                 <td>{{ $memoria->created_at }}</td>
                                 <td>{{ $memoria->descricao }}</td>
                                 <td>
@@ -35,9 +37,10 @@
                                             <i class="fa-solid fa-trash-can" style="color: red;"></i>
                                         </button>
                                     </form>
-                                    <button type="button" style="border: none; background: none; cursor: pointer;">
+                                    <a href="{{ route('memoria.edit', $memoria->id) }}" style="text-decoration: none;">
                                         <i class="fa-solid fa-pen-to-square" style="color: #1c71d8;"></i>
-                                    </button>
+                                    </a>
+
                                 </td>
                             </tr>
                         @endforeach

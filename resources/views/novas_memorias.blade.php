@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class=" bg-light col">
-                <h3 class="mt-3 mt-3 text-center"> Novas Memorias</h3>
+                <h3 class="mt-3 text-center"> Novas Memorias</h3>
                 <form action="{{ route('memoria.create') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="mb-3">

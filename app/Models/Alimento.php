@@ -16,6 +16,6 @@ class Alimento extends Model
         'origem',
         'tipo',
         'quantidade',
-          
+
     ];
 }

@@ -64,12 +64,32 @@ class InventarioController extends Controller
     // vai visualizar um alimento especifico
     public function AlimentoView($id)
     {
-        return view('alimentoView', ['alimento' => Alimento::find($id)]);
+
+        return view('alimentoView', ['id' => Alimento::find($id)]);
     }
 
     public function edit(Alimento $id)
     {
         $editing = true;
         return view('alimentoView', compact('id', 'editing'));
+    }
+
+    public function update(Alimento $id)
+    {
+        request()->validate([
+            'nome' => 'max:240',
+            'origem' => 'max:240',
+            'marca' =>  'max:240',
+
+        ]);
+
+        $id->nome = request()->get('nome', '');
+        $id->tipo = request()->get('tipo', '');
+        $id->quantidade = request()->get('quantidade', '');
+        $id->origem = request()->get('origem', '');
+        $id->marca = request()->get('marca', '');
+        $id->save();
+
+        return redirect()->route('alimentos.view')->with('seccess', "Alimento atualizado com sucesso!");
     }
 }

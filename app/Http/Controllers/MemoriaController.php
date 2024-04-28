@@ -12,10 +12,8 @@ class MemoriaController extends Controller
 {
     public function index()
     {
-        $memorias = Memoria::with('comments')->get();
-        return view('memorias', ['memorias' => $memorias]);
 
-        //return view('memorias', ['memorias' => Memoria::all()]);
+        return view('memorias', ['memorias' => Memoria::all()]);
     }
 
     public function new_memorias()
@@ -81,6 +79,11 @@ class MemoriaController extends Controller
         return redirect()->route('memoria.view')->with('success', 'Memoria criada com sucesso !');
     }
 
+    public function memoriaView($id)
+    {
+        return view('memoriaView', ['id' => Memoria::find($id)]);
+    }
+
     public function destroy(Memoria $id)
     {
 
@@ -88,5 +91,39 @@ class MemoriaController extends Controller
 
 
         return redirect()->route('memoria.view')->with('success', 'Memoria apagada com sucesso !');
+    }
+
+    public function edit(Memoria $id)
+    {
+        $editing = true;
+        return view('memoriaView', compact('id', 'editing'));
+    }
+
+    public function update(Memoria $id)
+    {
+        request()->validate([
+            'titulo' => 'max:240',
+            'origem' => 'max:240',
+            'marca' =>  'max:240',
+
+        ]);
+
+        $id->titulo = request()->get('titulo', '');
+        $id->descricao = request()->get('descricao', '');
+        $id->imagem = request()->get('imagem', '');
+
+
+        foreach ($id->avaliacao as $avaliacao) {
+            $avaliacao->avaliacaoAparencia = request()->get('avaliacaoAparencia', '');
+            $avaliacao->avaliacaoSabor = request()->get('avaliacaoSabor', '');
+            $avaliacao->avaliacaoTextura = request()->get('avaliacaoTextura', '');
+            $avaliacao->avaliacaoGeral = request()->get('avaliacaoGeral', '');
+            $avaliacao->observacao = request()->get('observacao', '');
+            $avaliacao->save(); // Salvando a alteração na avaliação
+        }
+
+        $id->save();
+
+        return redirect()->route('memoria.view')->with('seccess', "Memoria atualizada com sucesso!");
     }
 }

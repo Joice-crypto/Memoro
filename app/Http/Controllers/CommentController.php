@@ -17,6 +17,6 @@ class CommentController extends Controller
         $comment->comentario = request()->get('comentario');
         $comment->save();
 
-        return redirect()->route('memoria.view', $memoria->id)->with('success', "Comentário postado com sucesso !");
+        return redirect()->route('dashboard', $memoria->id)->with('success', "Comentário postado com sucesso !");
     }
 }

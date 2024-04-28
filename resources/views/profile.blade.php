@@ -7,20 +7,20 @@
             <div class=" bg-light col">
                 <h3 class="mt-3  text-center">Gerenciar Perfil</h3>
                 <form class="pr-3">
-                    @foreach ($usuarios as $user)
-                        <div class="mb-3">
-                            <p> Nome: {{ $user->name }}</p>
-                        </div>
-                        <div class="mb-3">
-                            <p> Seguidores: {{ $user->name }}</p>
-                        </div>
-                        <div class="mb-3">
-                            <p> Seguindo: {{ $user->name }}</p>
-                        </div>
-                        <div class="mb-3">
-                            <p> Email: {{ $user->email }}</p>
-                        </div>
-                    @endforeach
+
+                    <div class="mb-3">
+                        <p> Nome: {{ auth()->user()->name }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p> Seguidores: </p>
+                    </div>
+                    <div class="mb-3">
+                        <p> Seguindo: </p>
+                    </div>
+                    <div class="mb-3">
+                        <p> Email: {{ auth()->user()->email }}</p>
+                    </div>
+
 
                     <div class="d-flex justify-content-evenly">
 

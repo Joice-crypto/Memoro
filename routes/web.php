@@ -62,8 +62,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/novasmemorias', [MemoriaController::class, 'storeMemoria'])->name('memoria.create');
     // visualzar memorias 
     Route::get('/memorias', [MemoriaController::class, 'index'])->name('memoria.view');
+    // visualzar uma memoria
+    Route::get('/memoria/{id}/view', [MemoriaController::class, 'memoriaView'])->name('memoria.show');
     // deletar memoria
     Route::delete('/memoria/{id}', [MemoriaController::class, 'destroy'])->name('memoria.destroy');
+    // editar memoria
+    Route::get('/memoria/{id}/edit', [MemoriaController::class, 'edit'])->name('memoria.edit');
+    // update de memoria
+    Route::put('/memoria/{id}', [MemoriaController::class, 'update'])->name('memoria.update');
     // criar avaliação form 
     Route::post('/avaliacao', [AvaliacaoController::class, 'storeAvaliacao'])->name('avaliacao.create');
 
