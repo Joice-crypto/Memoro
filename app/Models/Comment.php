@@ -11,6 +11,12 @@ class Comment extends Model
 
     protected $fillable = [
         'comentario',
+        'user_id',
         'memoria_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

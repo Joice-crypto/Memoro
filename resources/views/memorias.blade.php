@@ -30,17 +30,27 @@
                                 <td>{{ $memoria->created_at }}</td>
                                 <td>{{ $memoria->descricao }}</td>
                                 <td>
-                                    <form action="{{ route('memoria.destroy', $memoria->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                            <i class="fa-solid fa-trash-can" style="color: red;"></i>
-                                        </button>
-                                    </form>
-                                    <a href="{{ route('memoria.edit', $memoria->id) }}" style="text-decoration: none;">
-                                        <i class="fa-solid fa-pen-to-square" style="color: #1c71d8;"></i>
-                                    </a>
+                                    <div class="align-itens-center d-inline-flex">
+                                        <form action="{{ route('memoria.destroy', $memoria->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                <i class="fa-solid fa-trash-can  mr-2" style="color: red;"></i>
+                                            </button>
+                                        </form>
+                                        <a href="{{ route('memoria.edit', $memoria->id) }}" style="text-decoration: none;">
+                                            <i class="fa-solid fa-pen-to-square " style="color: #1c71d8;"></i>
+                                        </a>
+                                        <form action="{{ route('memoria.share', $memoria->id) }}" method="POST">
+                                            @csrf
+                                            @method('post')
 
+                                            <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                <i class="fa-solid fa-share-square " style="color: #000000;"></i>
+                                            </button>
+                                        </form>
+
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

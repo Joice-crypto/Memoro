@@ -4,8 +4,8 @@
         <div class="col-2 bg-light">
             <!-- Seu menu lateral aqui -->
             <div class="d-flex justify-content-center ">
-                <img style="width:50px" class="my-3 " src="{{ asset('assets/icons8-usuário-homem-com-círculo-50.png') }}"
-                    alt="user">
+                <img style="width:80px; height:80px; border-radius: 50%;" class="my-3 "
+                    src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="user">
             </div>
 
             <div class="nav mt-2 flex-column nav-pills me-3" id="v-pills-tab" role="tablist"

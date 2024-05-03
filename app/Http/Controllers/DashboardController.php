@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Memoria;
+use App\Models\Compartilhamentos;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
@@ -10,16 +11,19 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // checa se tem uma busca 
-        // se tiver, checa se o dado procurado esta no banco de dados
 
-        $memorias = Memoria::orderBy('created_at', 'DESC');
+        $memoriasCompartilhadas = Compartilhamentos::orderBy('created_at', 'DESC');
 
         if (request()->has('search')) {
-            $memorias = $memorias->where('descricao', 'like', '%' . request()->get('search', '') . '%');
+            // Como 'descricao' é um campo de 'memoria', você precisa ajustar a consulta para buscar nas memórias associadas aos compartilhamentos
+            $memoriasCompartilhadas = $memoriasCompartilhadas->whereHas('memoria', function ($query) {
+                $query->where('descricao', 'like', '%' . request()->get('search', '') . '%');
+            });
         }
 
-        $memorias = $memorias->with('comments')->paginate(5);
-        return view('dashboard', ['memorias' => $memorias]);
+        // Carregar as memórias associadas aos compartilhamentos
+        $memoriasCompartilhadas = $memoriasCompartilhadas->with('memoria.comments')->paginate(5);
+
+        return view('dashboard', ['memoriasComp' => $memoriasCompartilhadas]);
     }
 }

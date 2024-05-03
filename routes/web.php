@@ -6,6 +6,7 @@ use App\Http\Controllers\MemoriaController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CompartilharController;
 use App\Http\Controllers\PainelControleController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-// painel interno 
-
 
 
 
@@ -72,6 +70,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/memoria/{id}', [MemoriaController::class, 'update'])->name('memoria.update');
     // criar avaliação form 
     Route::post('/avaliacao', [AvaliacaoController::class, 'storeAvaliacao'])->name('avaliacao.create');
+    // cria um compartilhamento
+    Route::post('/compartilhar/{id}', [CompartilharController::class, 'shareMemoria'])->name('memoria.share');
 
 
     // criar comentarios

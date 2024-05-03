@@ -19,6 +19,11 @@ class Memoria extends Model
 
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function avaliacao()
     {
         return $this->hasMany(Avaliacao::class, 'memoria_id', 'id');

@@ -29,19 +29,22 @@
                                     </a>
                                 </td>
                                 <td>{{ $alimento->quantidade }}</td>
-                                <td class="d-flex justify-content-center">
-                                    <form action="{{ route('alimento.destroy', $alimento->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" style="border: none; background: none; cursor: pointer;">
-                                            <i class="fa-solid fa-trash-can" style="color: red;"></i>
-                                        </button>
-                                    </form>
+                                <td>
+                                    <div class="align-itens-center d-inline-flex">
 
-                                    <a href="{{ route('alimento.edit', $alimento->id) }}" style="text-decoration: none;">
-                                        <i class="fa-solid fa-pen-to-square" style="color: #1c71d8;"></i>
-                                    </a>
+                                        <form action="{{ route('alimento.destroy', $alimento->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                <i class="fa-solid fa-trash-can " style="color: red;"></i>
+                                            </button>
+                                        </form>
 
+                                        <a href="{{ route('alimento.edit', $alimento->id) }}"
+                                            style="text-decoration: none;">
+                                            <i class="fa-solid fa-pen-to-square" style="color: #1c71d8;"></i>
+                                        </a>
+                                    </div>
 
                                 </td>
 

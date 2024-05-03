@@ -1,5 +1,5 @@
 <div>
-    <form action="{{ route('memorias.comments.store', $memoria->id) }}" method="POST">
+    <form action="{{ route('memorias.comments.store', $memoriaComp->memoria->id) }}" method="POST">
         @csrf
         <div class="mb-3">
             <textarea name="comentario" class="fs-6 form-control" rows="1"></textarea>
@@ -7,27 +7,25 @@
         <div>
             <button type="submit" class="btn btn-primary btn-sm"> Comentar </button>
         </div>
-
-        <hr class="mt-4">
-        <p>Comentários</p>
-        @foreach ($memorias as $comentario)
+    </form>
+    <hr class="mt-4">
+    <p>Comentários</p>
+    @foreach ($memoriasComp as $memoriaComp)
+        @foreach ($memoriaComp->memoria->comments as $comment)
             <div class="d-flex mt-3 align-items-start">
 
-                <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi" alt="User Avatar">
+                <img style="width: 50px; height: 50px;" class="me-2 avatar-sm rounded-circle"
+                    src="{{ asset('storage/' . $comment->user->avatar) }}" alt="User Avatar">
                 <div class="w-100">
                     <div class="d-flex justify-content-between">
-                        {{-- <h6 class=""> Nome aqui</h6> --}}
-                        <small class="fs-6 fw-light text-muted">{{ $comentario->created_at }} </small>
+                        <small class="fs-6 fw-light text-muted">{{ $comment->user->name }}</small>
+                        <small
+                            class="fs-6 fw-light text-muted">{{ $comment->created_at->format('d/m/Y h:i A') }}</small>
                     </div>
-                    <p class="fs-6 mt-3 fw-light">
-
-                        {{ $comentario->comentario }}
-                    </p>
+                    <p class="fs-6 mt-3 fw-light">{{ $comment->comentario }}</p>
                 </div>
-
             </div>
         @endforeach
+    @endforeach
 
-    </form>
 </div>
