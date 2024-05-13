@@ -32,7 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    // perfil de um usuario
+    Route::get('/UserProfile/{id}', [PainelControleController::class, 'userProfile'])->name('profile.user');
+    // seguir um usuario
+    Route::post('/UserProfile/{id}/following', [PainelControleController::class, 'follow'])->name('profile.follow');
+    // deixar de seguir um usuario
+    Route::post('/UserProfile/{id}/follower', [PainelControleController::class, 'unfollow'])->name('profile.unfollow');
     // painel interno 
     Route::get('/PainelControle', [PainelControleController::class, 'index'])->name('painel');
 

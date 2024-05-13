@@ -11,21 +11,29 @@
     <hr class="mt-4">
     <p>Comentários</p>
     @foreach ($memoriasComp as $memoriaComp)
-        @foreach ($memoriaComp->memoria->comments as $comment)
-            <div class="d-flex mt-3 align-items-start">
+        @if ($memoriaComp->memoria && $memoriaComp->memoria->comments->isNotEmpty())
+            @foreach ($memoriaComp->memoria->comments as $comment)
+                <div class="d-flex mt-3 align-items-start">
 
-                <img style="width: 50px; height: 50px;" class="me-2 avatar-sm rounded-circle"
-                    src="{{ asset('storage/' . $comment->user->avatar) }}" alt="User Avatar">
-                <div class="w-100">
-                    <div class="d-flex justify-content-between">
-                        <small class="fs-6 fw-light text-muted">{{ $comment->user->name }}</small>
-                        <small
-                            class="fs-6 fw-light text-muted">{{ $comment->created_at->format('d/m/Y h:i A') }}</small>
+                    <img style="width: 50px; height: 50px;" class="me-2 avatar-sm rounded-circle"
+                        src="{{ asset('storage/' . $comment->user->avatar) }}" alt="User Avatar">
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between">
+                            <a href=" {{ route('profile.user', $comment->user->id) }}"> <small
+                                    class="fs-6 fw-light text-muted">{{ $comment->user->name }}</small></a>
+                            <small class="fs-6 fw-light text-muted">{{ $comment->created_at->format('d/m/Y h:i A') }}
+                                <a href="#" class="fw-light pt-2 nav-link fs-6"> <i class="fa-solid fa-trash-alt"
+                                        style="color: #e00606;"></i> </a> </small>
+
+
+                        </div>
+
+                        <p class="fs-6  fw-light">{{ $comment->comentario }}</p>
+
                     </div>
-                    <p class="fs-6 mt-3 fw-light">{{ $comment->comentario }}</p>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @endif
     @endforeach
 
 </div>

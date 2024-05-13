@@ -12,10 +12,10 @@
                         <p> Nome: {{ auth()->user()->name }}</p>
                     </div>
                     <div class="mb-3">
-                        <p> Seguidores: </p>
+                        <p> Seguidores: {{ auth()->user()->followers->count() }} </p>
                     </div>
                     <div class="mb-3">
-                        <p> Seguindo: </p>
+                        <p> Seguindo: {{ auth()->user()->followings->count() }} </p>
                     </div>
                     <div class="mb-3">
                         <p> Email: {{ auth()->user()->email }}</p>
