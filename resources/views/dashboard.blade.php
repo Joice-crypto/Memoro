@@ -29,17 +29,16 @@
                             </div>
 
                             <div class="card-body">
-                                <p class="fs-6 fw-light text-muted">
+                                <p class=" fw-light text-muted">
                                     {{ $memoriaComp->memoria->titulo }}
                                 </p>
                                 <p class="fs-6 fw-light text-muted">
                                     {{ $memoriaComp->memoria->descricao }}
                                 </p>
-                                <div class="d-flex p-2 ">
-                                    <div>
-                                        <a href="#" class="fw-light nav-link fs-6"> <i class="fa-solid fa-heart"
-                                                style="color: #e00606;"></i> </a>
-                                    </div>
+                                <img src="{{ asset('storage/' . $memoriaComp->memoria->imagem) }}" alt="profile Pic"
+                                    height="100" width="120">
+                                <div class="d-flex p-2 mt-3 ">
+                                    @include('shared.like-button')
 
                                 </div>
                                 @include('shared.comments-box')

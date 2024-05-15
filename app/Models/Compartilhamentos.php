@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Compartilhamentos extends Model
 {
+    protected $table = 'compartilhamentos';
     use HasFactory;
 
     protected $fillable = [
         'memoria_id',
-        'usuario_id'
+        'usuario_id',
+
     ];
 
     public function memoria()
@@ -23,6 +25,12 @@ class Compartilhamentos extends Model
     {
         return $this->memoria->comments();
     }
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'memoria_like')->withTimestamps();
+    }
+
+
 
     public function user()
     {

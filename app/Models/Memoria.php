@@ -15,6 +15,7 @@ class Memoria extends Model
         'titulo',
         'imagem',
         'alimento_id',
+        'compartilhamento_id'
 
 
     ];
@@ -32,5 +33,10 @@ class Memoria extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class, 'memoria_id', 'id');
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'memoria_like')->withTimestamps();
     }
 }

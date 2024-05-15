@@ -21,4 +21,13 @@ class CommentController extends Controller
 
         return redirect()->route('dashboard', $memoria->id)->with('success', "Comentário postado com sucesso !");
     }
+
+    public function destroy($id)
+    {
+
+        $comentario =  Comment::where('id', $id)->first();
+        $comentario->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Comentário apagado com sucesso !');
+    }
 }

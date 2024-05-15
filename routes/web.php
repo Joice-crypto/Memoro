@@ -38,6 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/UserProfile/{id}/following', [PainelControleController::class, 'follow'])->name('profile.follow');
     // deixar de seguir um usuario
     Route::post('/UserProfile/{id}/follower', [PainelControleController::class, 'unfollow'])->name('profile.unfollow');
+    //curtir memoria compartilhada
+    Route::post('/memoria/{id}/like', [CompartilharController::class, 'like'])->name('memorias.like');
+    // descurtir memoria
+    Route::post('/memoria/{id}/unlike', [CompartilharController::class, 'unlike'])->name('memorias.unlike');
+
     // painel interno 
     Route::get('/PainelControle', [PainelControleController::class, 'index'])->name('painel');
 
@@ -81,6 +86,9 @@ Route::middleware('auth')->group(function () {
 
     // criar comentarios
     Route::post('/memorias/{memoria}/comments', [CommentController::class, 'storeComments'])->name('memorias.comments.store');
+    // deleetar comentario 
+    // criar comentarios
+    Route::delete('/memorias/{id}/deleteComment', [CommentController::class, 'destroy'])->name('memorias.comments.destroy');
 });
 
 require __DIR__ . '/auth.php';

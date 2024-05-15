@@ -9,7 +9,7 @@
         </div>
     </form>
     <hr class="mt-4">
-    <p>Comentários</p>
+    <p class="p-2">Comentários</p>
     @foreach ($memoriasComp as $memoriaComp)
         @if ($memoriaComp->memoria && $memoriaComp->memoria->comments->isNotEmpty())
             @foreach ($memoriaComp->memoria->comments as $comment)
@@ -18,12 +18,19 @@
                     <img style="width: 50px; height: 50px;" class="me-2 avatar-sm rounded-circle"
                         src="{{ asset('storage/' . $comment->user->avatar) }}" alt="User Avatar">
                     <div class="w-100">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex ">
                             <a href=" {{ route('profile.user', $comment->user->id) }}"> <small
-                                    class="fs-6 fw-light text-muted">{{ $comment->user->name }}</small></a>
-                            <small class="fs-6 fw-light text-muted">{{ $comment->created_at->format('d/m/Y h:i A') }}
-                                <a href="#" class="fw-light pt-2 nav-link fs-6"> <i class="fa-solid fa-trash-alt"
-                                        style="color: #e00606;"></i> </a> </small>
+                                    class="fs-6 fw-light  text-muted">{{ $comment->user->name }}</small></a>
+                            <small
+                                class="fs-6 fw-light ms-2 text-muted">{{ $comment->created_at->format('d/m/Y h:i A') }}
+                            </small>
+                            <form action="{{ route('memorias.comments.destroy', $comment->id) }}" class="ms-auto"
+                                method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="fw-light pt-2 nav-link fs-6"> <i
+                                        class="fa-solid fa-trash-alt" style="color: #e00606;"></i> </a>
+                            </form>
 
 
                         </div>
@@ -32,6 +39,7 @@
 
                     </div>
                 </div>
+                <hr class="mt-2">
             @endforeach
         @endif
     @endforeach

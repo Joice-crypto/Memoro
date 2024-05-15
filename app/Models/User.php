@@ -32,6 +32,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'compartilhamento_id',
     ];
 
     public function followings()
@@ -46,6 +47,16 @@ class User extends Authenticatable
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follower_user', 'user_id', 'follower_id')->withTimestamps();
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Compartilhamentos::class, 'memoria_like')->withTimestamps();
+    }
+
+    public function likesMemoria(Compartilhamentos $id)
+    {
+        return $this->likes()->where('compartilhamentos_id', $id->id)->exists();
     }
 
     /**
