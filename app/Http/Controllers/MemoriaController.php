@@ -47,6 +47,8 @@ class MemoriaController extends Controller
             $validated['imagem'] = $imagePath;
         }
 
+
+
         $memoria = new Memoria([
             'descricao' => $descricao,
             'titulo' => $titulo,
@@ -56,27 +58,27 @@ class MemoriaController extends Controller
 
         $memoria->save();
 
-        if ($request->input('fazerAvaliacao') . value('sim')) {
-
-            // Criar avaliação
+        if ($request->input('fazerAvaliacao') == 'sim') {
             $avaliacaoAparencia = $request->input('avaliacaoAparencia');
             $avaliacaoSabor = $request->input('avaliacaoSabor');
             $avaliacaoTextura = $request->input('avaliacaoTextura');
             $avaliacaoGeral = $request->input('avaliacaoGeral');
             $observacao = $request->input('observacao');
 
+            // Cria a nova avaliação associada à memória criada
             $avaliacao = new Avaliacao([
                 'avaliacaoAparencia' => $avaliacaoAparencia,
                 'avaliacaoSabor' => $avaliacaoSabor,
                 'avaliacaoTextura' => $avaliacaoTextura,
                 'avaliacaoGeral' => $avaliacaoGeral,
                 'observacao' => $observacao,
-                'memoria_id' => $memoria->id, // Use o ID da memória recém-criada
+                'memoria_id' => $memoria->id, // Usa o ID da memória recém-criada
             ]);
             $avaliacao->save();
         }
 
-        return redirect()->route('memoria.view')->with('success', 'Memoria criada com sucesso !');
+
+        return redirect()->route('memoria.view')->with('success', 'Memoria criada com sucesso!');
     }
 
     public function memoriaView($id)

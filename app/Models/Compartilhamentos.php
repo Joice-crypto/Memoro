@@ -9,7 +9,7 @@ class Compartilhamentos extends Model
 {
     protected $table = 'compartilhamentos';
     use HasFactory;
-
+    protected $withCount = ['likes'];
     protected $fillable = [
         'memoria_id',
         'usuario_id',

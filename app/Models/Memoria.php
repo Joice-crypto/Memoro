@@ -10,6 +10,8 @@ class Memoria extends Model
     protected $table = 'memoria';
     use HasFactory;
 
+
+
     protected $fillable = [
         'descricao',
         'titulo',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Memoria;
 use App\Models\Compartilhamentos;
+use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
@@ -20,10 +21,12 @@ class DashboardController extends Controller
                 $query->where('descricao', 'like', '%' . request()->get('search', '') . '%');
             });
         }
-
+        $topUsers = User::orderBy('created_at', 'DESC')->limit(5)->get();
         // Carregar as memórias associadas aos compartilhamentos
         $memoriasCompartilhadas = $memoriasCompartilhadas->with('memoria.comments')->paginate(5);
 
-        return view('dashboard', ['memoriasComp' => $memoriasCompartilhadas]);
+
+
+        return view('dashboard', ['memoriasComp' => $memoriasCompartilhadas, 'topUsers' => $topUsers]);
     }
 }

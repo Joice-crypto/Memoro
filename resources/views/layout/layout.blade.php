@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="bg-dark-subtle ">
+<body class="bg-secondary ">
 
     <div>
         {{-- o conteudo vai ficar aqui --}}
