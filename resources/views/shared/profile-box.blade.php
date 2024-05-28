@@ -7,11 +7,11 @@
                 <div class="  bg-light col">
 
 
-                    <div class="mb-3">
-                        <img style="width: auto; height: 150px;" class="me-2 mt-4"
-                            src="{{ asset('storage/' . $user->avatar) }}" alt="User Avatar">
+                    {{-- <div class="mb-3">
+                        <img style="width: auto; height: 150px;" class="me-2 mt-4" src="{{ asset('/' . $user->avatar) }}"
+                            alt="User Avatar">
 
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
                         <p> Nome: {{ $user->name }} </p>
                     </div>

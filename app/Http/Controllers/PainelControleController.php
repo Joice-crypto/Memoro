@@ -31,5 +31,10 @@ class PainelControleController extends Controller
 
     public function unfollow($id)
     {
+        $unfollower = auth()->user();
+
+        $unfollower->followings()->detach($id);
+
+        return redirect()->route('painel')->with('success', "Deixou de seguir com sucesso!");
     }
 }

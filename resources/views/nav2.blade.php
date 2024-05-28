@@ -5,7 +5,7 @@
             <!-- Seu menu lateral aqui -->
             <div class="d-flex justify-content-center ">
                 <img style="width:80px; height:80px; border-radius: 50%;" class="my-3 "
-                    src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="user">
+                    src="{{ asset('/' . Auth::user()->avatar) }}" alt="user">
             </div>
 
             <div class="nav mt-2 flex-column nav-pills me-3" id="v-pills-tab" role="tablist"

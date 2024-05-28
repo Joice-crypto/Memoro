@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        {{ $memoriasComp->links() }}
+
 
     </x-app-layout>
 @endsection
