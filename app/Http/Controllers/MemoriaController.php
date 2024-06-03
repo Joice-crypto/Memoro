@@ -12,8 +12,11 @@ class MemoriaController extends Controller
 {
     public function index()
     {
-
-        return view('memorias', ['memorias' => Memoria::all()]);
+        $memorias = Memoria::all();
+        if ($memorias->isEmpty()) {
+            return view('NoMemoria');
+        } else
+            return view('memorias',  ['memorias' => Memoria::all()]);
     }
 
     public function new_memorias()
@@ -83,6 +86,7 @@ class MemoriaController extends Controller
 
     public function memoriaView($id)
     {
+
         return view('memoriaView', ['id' => Memoria::find($id)]);
     }
 

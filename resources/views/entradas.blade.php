@@ -5,16 +5,16 @@
     <div class="container">
         <div class="row">
             <div class=" bg-light col">
-                <h3 class="mt-3 text-center">Cadastrar novo item</h3>
+                <h3 class="mt-3 text-center">Cadastrar Novo Alimento</h3>
                 <form action="{{ route('alimento.create') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="nomeProduto" class="form-label">Nome do produto</label>
+                        <label for="nomeProduto" class="form-label">Nome</label>
                         <input type="text" class="form-control" name="nome" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <select class="form-select form-select-sm mb-3" name="tipo" aria-label="Large select example">
-                            <option selected disabled>Tipo de produto</option>
+                            <option selected disabled>Tipo</option>
                             <option value="Queijo">Queijo</option>
                             <option value="Vinho">Vinho</option>
                             <option value="Charuto">Charuto</option>

@@ -5,9 +5,12 @@
     <div class="container">
         <div class="row">
             <div class=" bg-light col">
-                <h3 class="mt-3  text-center">Gerenciar Perfil</h3>
+                <h3 class="mt-3  text-center">Informações da Conta</h3>
                 <form class="pr-3">
-
+                    <div class="d-flex justify-content-center ">
+                        <img style="width:80px; height:80px; border-radius: 50%;" class="my-3 "
+                            src="{{ asset('/' . Auth::user()->avatar) }}" alt="user">
+                    </div>
                     <div class="mb-3">
                         <p> Nome: {{ auth()->user()->name }}</p>
                     </div>

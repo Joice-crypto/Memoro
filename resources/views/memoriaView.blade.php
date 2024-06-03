@@ -4,7 +4,9 @@
 @section('abas')
     <div class="container">
         <div class="row">
+
             <div class=" bg-light col">
+
 
                 @if ($editing ?? false)
                     <h3 class="mt-3 text-center"> Memoria {{ $id->titulo }}</h3>

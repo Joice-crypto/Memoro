@@ -11,7 +11,12 @@ class InventarioController extends Controller
     public function index()
     {
 
-        return view('inventario', ['alimentos' => Alimento::all()]);
+        $alimento = Alimento::all();
+        if ($alimento->isEmpty()) {
+            return view('NoAlimento');
+        } else
+
+            return view('inventario', ['alimentos' => Alimento::all()]);
     }
 
 

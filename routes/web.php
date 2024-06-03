@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     // perfil de um usuario
     Route::get('/UserProfile/{id}', [PainelControleController::class, 'userProfile'])->name('profile.user');
     // seguir um usuario
@@ -65,7 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/alimento/{id}', [InventarioController::class, 'destroy'])->name('alimento.destroy');
 
     // criar memorias view
-    Route::get('/novas_memorias', [MemoriaController::class, 'new_memorias']);
+    Route::get('/novas_memorias', [MemoriaController::class, 'new_memorias'])->name('memoria.new');
     // criar memorias form 
     Route::post('/novasmemorias', [MemoriaController::class, 'storeMemoria'])->name('memoria.create');
     // visualzar memorias 

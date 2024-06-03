@@ -12,7 +12,20 @@
                 </div>
 
 
+
             </div>
+            <ul class="nav mt-4 ">
+
+
+                <a href={{ route('memoria.view') }}>
+                    <li class="text-warning nav-item mx-5"><strong> Memorias </strong></li>
+                </a>
+
+                <a href={{ route('alimentos.view') }}>
+                    <li class="text-warning nav-item ml-auto"><strong> Inventário </strong></li>
+                </a>
+            </ul>
+
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -34,12 +47,9 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Perfil') }}
-                        </x-dropdown-link>
 
                         <x-dropdown-link :href="route('painel')">
-                            {{ __('Painel de Controle') }}
+                            {{ __('Informações da Conta') }}
                         </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

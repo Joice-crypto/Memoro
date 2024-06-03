@@ -3,6 +3,7 @@
     <x-app-layout>
 
         <div class="container p-3 mb-2 text-dark-emphasis py-4">
+
             <div class="row">
                 <div class="col-3">
                     @include('shared.search')
