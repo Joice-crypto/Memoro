@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alimento;
 use App\Models\Memoria;
 use App\Models\Compartilhamentos;
 use App\Models\User;
@@ -13,20 +14,33 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $memoriasCompartilhadas = Compartilhamentos::orderBy('created_at', 'DESC');
+        $alimentos = Alimento::orderBy('created_at', 'DESC');
+        $memorias = Memoria::orderBy('created_at', 'DESC');
 
         if (request()->has('search')) {
-            // Como 'descricao' é um campo de 'memoria', você precisa ajustar a consulta para buscar nas memórias associadas aos compartilhamentos
-            $memoriasCompartilhadas = $memoriasCompartilhadas->whereHas('memoria', function ($query) {
-                $query->where('descricao', 'like', '%' . request()->get('search', '') . '%');
+            $searchTerm = request()->get('search', '');
+
+
+            $memorias = $memorias->where(function ($query) use ($searchTerm) {
+                $query->where('descricao', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('titulo', 'like', '%' . $searchTerm . '%');
+            });
+
+            $alimentos = $alimentos->where(function ($query) use ($searchTerm) {
+                $query->where('nome', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('tipo', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('origem', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('marca', 'like', '%' . $searchTerm . '%');
             });
         }
+
+
         $topUsers = User::orderBy('created_at', 'DESC')->limit(5)->get();
-        // Carregar as memórias associadas aos compartilhamentos
-        $memoriasCompartilhadas = $memoriasCompartilhadas->with('memoria.comments')->paginate(5);
 
-
-
-        return view('dashboard', ['memoriasComp' => $memoriasCompartilhadas, 'topUsers' => $topUsers]);
+        return view('dashboard', [
+            'memoriasComp' => $memorias->get(), // Adicionar get() para executar a consulta
+            'alimentos' => $alimentos->get(),   // Adicionar get() para executar a consulta
+            'topUsers' => $topUsers
+        ]);
     }
 }

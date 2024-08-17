@@ -7,7 +7,7 @@
         <div class="row">
             <div class="card text-center bg-light col">
 
-                <h4 class="p-5"> Nenhum alimento foi cadastrado. Cadastre <a href={{ route('alimento.create') }}>
+                <h4 class="p-5"> Nenhum alimento foi cadastrado. Cadastre <a href={{ route('alimento.createView') }}>
                         aqui</a>!
                 </h4>
             </div>

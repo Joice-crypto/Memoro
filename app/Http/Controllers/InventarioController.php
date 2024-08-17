@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Alimento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\VarDumper\VarDumper;
 
 class InventarioController extends Controller
 {
@@ -11,7 +13,9 @@ class InventarioController extends Controller
     public function index()
     {
 
+
         $alimento = Alimento::all();
+        //    var_dump($alimento->toArray());
         if ($alimento->isEmpty()) {
             return view('NoAlimento');
         } else
@@ -23,21 +27,14 @@ class InventarioController extends Controller
     // aqui estou criando um alimento
     public function store()
     {
-
-        request()->validate([
-            'nome' => 'required|max:240',
-            'tipo' => 'required',
-            'quantidade' => 'required',
-            'origem' => 'required',
-            'marca' => 'required',
-
-        ]);
-
         $nome = request()->get('nome');
         $tipo = request()->get('tipo');
         $quantidade = request()->get('quantidade');
         $origem = request()->get('origem');
         $marca = request()->get('marca');
+
+        // Mostra os valores capturados
+        // dd($nome, $tipo, $quantidade, $origem, $marca);
 
         $alimento = new Alimento([
             'nome' => $nome,
@@ -47,9 +44,16 @@ class InventarioController extends Controller
             'marca' => $marca,
         ]);
 
-        $alimento->save();
 
-        return redirect()->route('alimentos.view')->with('success', 'Alimento criado com sucesso !');
+        if ($alimento->save()) {
+            return redirect()->route('alimentos.view')->with('success', 'Alimento criado com sucesso !');
+        } else {
+            // Ocorreu um erro ao salvar
+            return back()->withErrors('Erro ao criar o alimento.');
+        }
+
+        // var_dump($alimento->save());
+
     }
 
     public function cadastrarAlimentoView()
@@ -69,6 +73,7 @@ class InventarioController extends Controller
     // vai visualizar um alimento especifico
     public function AlimentoView($id)
     {
+
 
         return view('alimentoView', ['id' => Alimento::find($id)]);
     }
